@@ -1,0 +1,26 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="image" name="image" />
+    <button id="upload">Upload</button>
+    <script>
+      const button = document.getElementById("upload");
+
+      button.addEventListener("click", () => {
+        const value = document.getElementById("image").files[0];
+        console.log(value);
+        const formData = new FormData();
+        formData.append("image", value);
+
+        const request = new XMLHttpRequest();
+        request.open("POST", "http://localhost:4002/uploadImage");
+        request.send(formData);
+      });
+    </script>
+  </body>
+</html>
